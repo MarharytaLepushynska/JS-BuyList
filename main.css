@@ -105,7 +105,7 @@ body{
 	line-height: 25px;
 }
 
-.minus, .plus{
+.minus, .plus, .minus-n, .plus-n{
 	width: 30px;
     height: 30px;
     border: none;
@@ -115,6 +115,10 @@ body{
 	font-size: 16px;
 	font-weight: bold;
 	color: white;
+}
+
+.minus-n, .plus-n{
+	opacity: 0;
 }
 
 .minus{
@@ -141,7 +145,7 @@ body{
 	justify-content: flex-end;
 }
 
-.cross{
+.cross, .cross-n{
 	width: 30px;
 	height: 30px;
 	background-color: var(--red);
@@ -150,6 +154,10 @@ body{
 	font-size: 16px;
 	font-weight: bold;
 	color: white;
+}
+
+.cross-n{
+	opacity: 0;
 }
 
 .statistics{
@@ -271,7 +279,7 @@ button[data-tooltip]:hover::after{
 }
 
 
-@media(max-width: 500px){
+@media(max-width: 630px){
 	.all{
 		flex-direction: column;
 	}
