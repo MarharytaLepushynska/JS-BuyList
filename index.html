@@ -2,15 +2,81 @@
 <html>
 <head lang="uk">
     <meta charset="UTF-8">
-    <title>My Page</title>
-
-
+    <title>Кошик покупок</title>
     <link rel="stylesheet" type="text/css" href="main.css" />
 </head>
 <body>
-	<span class="product-item">
-		Apple
-		<span class="amount">4</span>
-	</span>
+	<div class="all">
+	<div class="basket">
+
+		<div class="add-item">
+			<input type="text" placeholder="Назва товару"/>
+			<button class="add" data-tooltip="Додати">Додати</button>
+		</div>
+
+		<div class="items">
+			<div class="first">
+				<span class="crossed-name">Помідори</span>
+				<span class="counter">2</span>
+				<div class="end">
+					<button class="status" data-tooltip="Не куплено">Не куплено</button>
+				</div>
+			</div>
+
+			<div class="second">
+				<span class="name">Печиво</span>
+				<div class="count">
+					<button class="minus" data-tooltip="Мінус">-</button>
+					<span class="counter">2</span>
+					<button class="plus" data-tooltip="Плюс">+</button>
+				</div>
+				<div class="end">
+					<button class="status" data-tooltip="Куплено">Куплено</button>
+					<button class="cross" data-tooltip="Видалити">x</button>
+				</div>
+			</div>
+
+			<div class="third">
+				<input class="name-change" type="text" value="Сир"/>
+				<div class="count">
+					<button class="minus" data-tooltip="Мінус">-</button>
+					<span class="counter">2</span>
+					<button class="plus" data-tooltip="Плюс">+</button>
+				</div>
+				<div class="end">
+					<button class="status" data-tooltip="Куплено">Куплено</button>
+					<button class="cross" data-tooltip="Видалити">x</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="statistics">
+			<h3>Залишилося</h3>
+			<div class="left">
+				<span class="product">
+					Печиво
+					<span class="amount">2</span>
+				</span>
+				<span class="product">
+					Сир
+					<span class="amount">1</span>
+				</span>
+			</div>
+
+			<h3>Куплено</h3>
+			<div class="bought">
+				<span class="product-crossed">
+					Помідори
+					<span class="amount">2</span>
+				</span>
+			</div>
+		</div>
+		</div>
+
+		<div class="badge">
+		<h4>Buy List</h4>
+			<span class="creator">Marharyta Lepushynska</span>
+		</div>
 </body>
 </html>
