@@ -23,7 +23,6 @@ body{
 
 .basket{
 	flex: 1 1 55%;
-	min-width: 300px;
 	background-color: white;
 	border-radius: 4px;
 	box-shadow: 0 0 10px var(--grey);
@@ -286,6 +285,18 @@ button[data-tooltip]:hover::after{
 
 	.basket, .statistics{
 		flex: 1 1 100%;
+	}
+}
 
+@media(max-width: 400px){
+	.all{
+		display: flex;
+		flex-direction: column;
+		scale: 0.8;
+		justify-self: center;
+	}
+
+	.basket, .statistics{
+		flex: 1 1 100%;
 	}
 }
