@@ -59,7 +59,18 @@ body{
 	cursor: pointer;
 }
 
-.first, .second, .third{
+/**.first, .second, .third{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	padding: 10px;
+	margin: 0;
+	align-items: center;
+	border-bottom: 1px solid var(--light-grey);
+}*/
+
+.row{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
