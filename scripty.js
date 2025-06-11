@@ -81,6 +81,48 @@ document.addEventListener('DOMContentLoaded', () => {
         redoStatistics();
     }
 
+    function repaintRow(item, button){
+            const row = button.closest('.row');
+            const element = document.createElement('div');
+            element.classList.add('row');
+
+            let elementName;
+            let elementCount;
+            let elementStatus;
+
+            if (item.bought) {
+                elementName = `<span class="name crossed-name">${item.name}</span>`;
+                elementCount = `<div class="count">
+                        <button class="minus-n" data-tooltip="Мінус">-</button>
+                        <span class="counter">${item.quantity}</span>
+                        <button class="plus-n" data-tooltip="Плюс">+</button>
+                    </div>`;
+
+                elementStatus = `<div class="end">
+                        <button class="status" data-tooltip="Не куплено" data-id="${item.id}">Куплено</button>
+                        <button class="cross-n" data-tooltip="Видалити" data-id="${item.id}">x</button>
+                    </div>`;
+            } else {
+                elementName = `<span class="name" data-id="${item.id}">${item.name}</span>`;
+                elementCount = `<div class="count">
+                        <button class="minus" data-tooltip="Мінус" data-id="${item.id}" ${item.quantity === 1 ? 'disabled' : ''}>-</button>
+                        <span class="counter">${item.quantity}</span>
+                        <button class="plus" data-tooltip="Плюс" data-id="${item.id}">+</button>
+                    </div>`;
+
+                elementStatus = `<div class="end">
+                        <button class="status" data-tooltip="Куплено" data-id="${item.id}">Не куплено</button>
+                        <button class="cross" data-tooltip="Видалити" data-id="${item.id}">x</button>
+                    </div>`;
+            }
+
+            element.innerHTML = `${elementName} ${elementCount} ${elementStatus}`;
+
+            row.replaceWith(element);
+            activateButtons();
+            redoStatistics();
+    }
+
     function activateButtons() {
         document.querySelectorAll('.status').forEach(button => {
             button.addEventListener('click', () => {
@@ -88,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const item = listOfItems.find(i => i.id === id);
                 if (item) {
                     item.bought = !item.bought;
-                    showList();
+                    repaintRow(item, button);
                 }
             });
         });
@@ -102,25 +144,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         document.querySelectorAll('.plus').forEach(button => {
+            if (!button.classList.contains('events-attached')) {
             button.addEventListener('click', () => {
                 const id = parseInt(button.dataset.id);
                 const item = listOfItems.find(i => i.id === id);
                 if (item) {
                     item.quantity++;
-                    showList();
+
+                    const row = button.closest('.row');
+                    const counter = row.querySelector('.counter');
+                    counter.textContent = item.quantity;
+
+                    redoStatistics();
+                    const minusButton = row.querySelector('.minus');
+                    if (minusButton && item.quantity > 1) {
+                        minusButton.disabled = false;
+                    }
+                    //repaintRow(item, button);
                 }
             });
+            }
         });
 
         document.querySelectorAll('.minus').forEach(button => {
+            if (!button.classList.contains('events-attached')) {
             button.addEventListener('click', () => {
                 const id = parseInt(button.dataset.id);
                 const item = listOfItems.find(i => i.id === id);
                 if (item && item.quantity > 1) {
                     item.quantity--;
-                    showList();
+                    //showList();
+
+                    const row = button.closest('.row');
+                    const counter = row.querySelector('.counter');
+                    counter.textContent = item.quantity;
+
+                    redoStatistics();
+                    if (item.quantity === 1) {
+                        button.disabled = true;
+                    }
                 }
             });
+            }
         });
 
         document.querySelectorAll('.name:not(.crossed-name)').forEach(span => {
@@ -138,7 +203,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 function saveEditedName() {
                     item.name = input.value.trim() || item.name;
-                    showList();
+                    repaintRow(item, input);
                 }
 
                 input.addEventListener('blur', saveEditedName);
