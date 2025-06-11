@@ -254,14 +254,15 @@ button[data-tooltip]{
 button[data-tooltip]::after{
 	content: attr(data-tooltip);
 	position: absolute;
-	bottom: 100%;
+	bottom: 50%;
 	left: 50%;
-	transform: translateX(-50%) translateY(-8px) scale(0.8);
+	max-height: 15px;
+	transform: translateX(-50%) translateY(-6px) scale(0.8);
 	opacity: 0;
 	background-color: var(--badge);
 	border-radius: 4px;
 
-	padding: 3px;
+	padding: 6px;
 	color: white;
 	font-size: 12px;
 	transition: opacity 0.5s ease, transform 0.5s ease;
