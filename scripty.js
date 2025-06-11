@@ -163,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     //repaintRow(item, button);
                 }
             });
+            button.classList.add('events-attached');
             }
         });
 
@@ -185,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
+            button.classList.add('events-attached');
             }
         });
 
